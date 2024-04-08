@@ -8,7 +8,7 @@ import Product from './models/productModel.js'
 import Order from './models/orderModel.js'
 import connectDB from './config/db.js'
 
-dotenv.config()
+dotenv.config();
 
 connectDB();
 
@@ -22,7 +22,7 @@ const importData = async () => {
         const createdUsers = await User.insertMany(users)
         const adminUser = createdUsers[0]._id
 
-        const sampleProducts = products.map(product => {
+        const sampleProducts = products.map(products => {
             return {
                 ...products, user: adminUser
             }
