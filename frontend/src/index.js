@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
 import ReactDOM from 'react-dom/client';
 import './bootstrap.min.css';
 import './index.css';
@@ -7,9 +9,9 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+    <Provider store={store}>
     <App />
-  </React.StrictMode>
+    </Provider>
 );
 
 reportWebVitals();
