@@ -10,12 +10,12 @@ const ProductScreen = ({match}) => {
 
     useEffect(()=>{
         const fetchProduct = async () => {
-            const {data} = await axios.get(`http://localhost:3000/api/products/${id}`)
+            const {data} = await axios.get(`/api/products/${id}`)
             console.log(match);
             setProduct(data)
         }
         fetchProduct();
-    }, []);    
+    }, [id]);    
 
   return (
     <>

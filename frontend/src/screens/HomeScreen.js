@@ -1,16 +1,19 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Row, Col } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Product from '../components/Product';
+import { fetchProducts } from '../services/productServices';
+
 
 const HomeScreen = () => {
   const products = useSelector((state) => state.productListReducer.products);
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    console.log(products);
 
-// useEffect(()=>{
-//    dispatch(listProducts)
-// }, [dispatch]);
+useEffect(()=>{
+   dispatch(fetchProducts())
+}, [dispatch]);
   return (
     <>
     <h1>Latest products</h1>
