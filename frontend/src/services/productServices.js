@@ -6,7 +6,6 @@ export const fetchProducts = createAsyncThunk(
     async (_, thunkAPI) => {
       try {
         const response = await axios.get('/api/products');
-        console.log('seeing fetch products')
         return response.data;
       } catch (error) {
         return thunkAPI.rejectWithValue({ error: error.message });
