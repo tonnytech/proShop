@@ -10,6 +10,7 @@ const HomeScreen = () => {
 
     const dispatch = useDispatch();
     console.log(products);
+    console.log('I can reach the home page');
 
 useEffect(()=>{
    dispatch(fetchProducts())
