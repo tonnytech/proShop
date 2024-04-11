@@ -9,9 +9,6 @@ const HomeScreen = () => {
   const products = useSelector((state) => state.productListReducer.products);
 
     const dispatch = useDispatch();
-    console.log(products);
-    console.log('I can reach the home page');
-
 useEffect(()=>{
    dispatch(fetchProducts())
 }, [dispatch]);
