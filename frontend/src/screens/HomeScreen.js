@@ -9,10 +9,7 @@ import { fetchProducts } from '../services/productServices';
 
 const HomeScreen = () => {
   const {isLoading, products, error} = useSelector((state) => state.productListReducer);
-  // console.log(product);
-  // const products = [];
-
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 useEffect(()=>{
    dispatch(fetchProducts())
 }, [dispatch]);
