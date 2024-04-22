@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form} from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { fetchProduct } from '../services/productServices';
+import { addToCart } from '../redux/slices/cartSlicle';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
@@ -14,12 +15,17 @@ const ProductScreen = () => {
     const {id} = useParams();
     const dispatch = useDispatch();
     const {product, isLoading, error} = useSelector((state) => state.singleProductReducer);
+    // const cartProducts = useSelector((state) => state.cartProductReducer);
+    // console.log(cartProducts)
+   
     useEffect(()=>{
         dispatch(fetchProduct(id))
     }, [dispatch, id]) 
     
     const addToCartHandler = () => {
-        navigate(`/cart/${id}?qty=${qty}`)
+        const cartItem = {...product, qty}
+        dispatch(addToCart(cartItem))
+        navigate(`/cart/${id}?qty=${qty}?`)
     }
 
   return (
