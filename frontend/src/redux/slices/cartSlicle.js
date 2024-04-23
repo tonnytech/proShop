@@ -2,7 +2,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { setLocalStorage } from '../../constants/constants';
 import { getLocalStorage } from '../../constants/constants';
-import { connections } from 'mongoose';
 
 const cartInitialState = () => {
   const storedCart = getLocalStorage('cartItems');
@@ -47,6 +46,10 @@ const cartSlice = createSlice({
       }
     
     },
+
+    removeFromCart(state, action) {
+
+    }
   },
 });
 

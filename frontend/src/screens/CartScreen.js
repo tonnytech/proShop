@@ -12,7 +12,6 @@ const CartScreen = () => {
   const product = useSelector(state => state.singleProductReducer);
 
   const { cartItems } = cart
-  console.log(cartItems);
   
   useEffect(()=> {
     if(product ){
@@ -82,7 +81,7 @@ const CartScreen = () => {
                 ${cartItems.reduce((acc, item)=> +acc + +item.qty * (+item.price), 0).toFixed(2)}
               </ListGroup.Item>
               <ListGroup.Item>
-                <Button type='button' className='btn-block' disable={cartItems.length === 0} onClick={checkoutHandler}>
+                <Button type='button' className='btn-block' disable={(cartItems.length === 0).toString()} onClick={checkoutHandler}>
                   Proceed to checkout
                 </Button>
               </ListGroup.Item>
