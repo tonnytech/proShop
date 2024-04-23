@@ -28,9 +28,9 @@ const getProductsSlice = createSlice({
         isLoading: false,
         isSuccessfull: true
       }))
-      .addCase(fetchProducts.rejected, (state) => ({
+      .addCase(fetchProducts.rejected, (state, action) => ({
         ...state,
-        error: 'Error',
+        error: action.payload,
         isLoading: false,
       }));
   },
