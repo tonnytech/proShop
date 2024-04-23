@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart } from '../redux/slices/cartSlicle'
+import { addToCart, removeFromCart } from '../redux/slices/cartSlicle'
 
 
 const CartScreen = () => {
@@ -20,7 +20,8 @@ const CartScreen = () => {
   }, [product, dispatch])
 
   const removeFromCartHandler = (id) => {
-    console.log(`remove ${id}`)
+    console.log(`remove ${id}`);
+    dispatch(removeFromCart(id))
   }
 
   const addToCartHandler = (e, id) => {
