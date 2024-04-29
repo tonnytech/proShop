@@ -1,20 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchProducts = createAsyncThunk(
-    'houses/fetchHouses',
-    async (_, thunkAPI) => {
+export const registerUser = createAsyncThunk(
+    'user/registerUser',
+    async (id, thunkAPI) => {
       try {
-        const response = await axios.get('/api/products');
+        const response = await axios.get(`/api/products/${id}`)
         return response.data;
-      } catch (error) {
-        return thunkAPI.rejectWithValue({ error: error.message });
+      } catch ( error) {
+        console.log(error.message)
+        return thunkAPI.rejectWithValue(error.message)
       }
-    },
-  );
+    }
+  )
 
-  export const fetchProduct = createAsyncThunk(
-    'product/fetchProduct',
+  export const loginUser = createAsyncThunk(
+    'user/loginUnser',
     async (id, thunkAPI) => {
       try {
         const response = await axios.get(`/api/products/${id}`)
