@@ -20,7 +20,6 @@ const CartScreen = () => {
   }, [product, dispatch])
 
   const removeFromCartHandler = (id) => {
-    console.log(`remove ${id}`);
     dispatch(removeFromCart(id))
   }
 
