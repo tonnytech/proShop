@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form} from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Card, Button, Form} from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { fetchProduct } from '../services/productServices';
 import { addToCart } from '../redux/slices/cartSlicle';

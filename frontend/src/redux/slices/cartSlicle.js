@@ -1,7 +1,6 @@
 // cartSlice.js (Redux slice)
 import { createSlice } from '@reduxjs/toolkit';
-import { setLocalStorage } from '../../constants/constants';
-import { getLocalStorage } from '../../constants/constants';
+import { setLocalStorage, getLocalStorage } from '../../constants/constants';
 
 const cartInitialState = () => {
   const storedCart = getLocalStorage('cartItems');
