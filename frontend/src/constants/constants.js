@@ -15,9 +15,9 @@ export const getLocalStorage = (location) => {
   }
 
   export const arrayToObject = (array) => {
-   if (array.length){
+  if (array.length){
     return array[0]
-   } else {
+  } else {
     return []
-   }
+  }
   }

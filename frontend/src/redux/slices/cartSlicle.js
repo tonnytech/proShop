@@ -24,22 +24,22 @@ const cartSlice = createSlice({
       // let cartItem;
       if(action.payload._id){
       const cartItem = action.payload;
-       const existingItem = state.cartItems.find((item) => item._id === cartItem._id);
-       if(existingItem){
+      const existingItem = state.cartItems.find((item) => item._id === cartItem._id);
+      if(existingItem){
           const currentItem = {
               ...state,
               cartItems: state.cartItems.map(x => x._id === existingItem._id ? cartItem : x)
           }
           setLocalStorage('cartItems', [...currentItem.cartItems]);
           return currentItem;
-       } else {
+      } else {
           const currentItem = {
               ...state,
               cartItems: [...state.cartItems, cartItem]
           }
           setLocalStorage('cartItems', [...currentItem.cartItems]);
           return currentItem;
-       }
+      }
       } else {
         return
       }
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
     },
 
     removeFromCart(state, action) {
-     const currentItems = {
+    const currentItems = {
       ...state,
       cartItems: state.cartItems.filter((x)=>x._id !== action.payload)
     }

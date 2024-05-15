@@ -4,6 +4,7 @@ import getSingleProductSlice from './slices/singleProduct'
 import cartSlicle from './slices/cartSlicle';
 import registerUserSlice from './slices/user/registerUserSlice';
 import loginUserSlice from './slices/user/loginUserSlice';
+import paymentAndShipping from './slices/paymentAndShipping';
 
 const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
         cartProductReducer: cartSlicle,
         registerUserSlice: registerUserSlice,
         loginUserSlice: loginUserSlice,
+        paymentAndShipping: paymentAndShipping
     }
 });
 

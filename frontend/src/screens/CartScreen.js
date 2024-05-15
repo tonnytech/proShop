@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
@@ -8,6 +8,7 @@ import { addToCart, removeFromCart } from '../redux/slices/cartSlicle'
 
 const CartScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector(state => state.cartProductReducer)
   const product = useSelector(state => state.singleProductReducer);
 
@@ -24,16 +25,16 @@ const CartScreen = () => {
   }
 
   const addToCartHandler = (e, id) => {
-   if(cartItems) {
+  if(cartItems) {
     const selectedProduct = cartItems.find(item => item._id === id);
     const newProduct = { ...selectedProduct, qty: e.target.value };
     dispatch(addToCart(newProduct));
-   }
+  }
   };
 
   const checkoutHandler = () => {
     console.log('checkout in process')
-    Navigate('/login?redirect=shipping')
+    navigate('/shipping')
   }
 
   return (

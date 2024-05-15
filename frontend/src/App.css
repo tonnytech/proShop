@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.button {
+  padding-top: 1rem;
+  color: red;
+  background-color: red;
+  display: none !important;
+}
