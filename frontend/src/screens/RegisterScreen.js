@@ -24,9 +24,9 @@ const RegisterScreen = () => {
     useEffect(()=> {
         if(registerUserInfo.length) {
             navigate('/');
-         } else {
+        } else {
             navigate('/register')
-         }
+        }
     },[navigate, registerUserInfo.length, dispatch, registerUserInfo])
 
     const submitHandler = (e)=> {
@@ -40,7 +40,7 @@ const RegisterScreen = () => {
     }
 
     
-  return (
+return (
     <FormContainer>
             <h1>Sign Up</h1>
             {error && <Message variant='danger' childern={error}>{error}</Message>}
