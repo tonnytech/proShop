@@ -10,13 +10,13 @@ const CartScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector(state => state.cartProductReducer)
-  const product = useSelector(state => state.singleProductReducer);
+  const {product} = useSelector(state => state.singleProductReducer);
 
   const { cartItems } = cart
   
   useEffect(()=> {
-    if(product ){
-      dispatch(addToCart(product))
+    if(product.product ){
+      dispatch(addToCart(product.product))
     }
   }, [product, dispatch])
 
@@ -26,7 +26,7 @@ const CartScreen = () => {
 
   const addToCartHandler = (e, id) => {
   if(cartItems) {
-    const selectedProduct = cartItems.find(item => item._id === id);
+    const selectedProduct = cartItems.find(item => item.product === id);
     const newProduct = { ...selectedProduct, qty: e.target.value };
     dispatch(addToCart(newProduct));
   }
@@ -44,18 +44,18 @@ const CartScreen = () => {
           {cartItems.length === 0 || cartItems.length === undefined ? <Message variant='primary' childern='Your cart is empty'><Link to='./'>Go back</Link></Message> : (
             <ListGroup variant='flush'>
               {cartItems.map(item => (
-                <ListGroup.Item key={item._id}>
+                <ListGroup.Item key={item.product}>
                   <Row>
                     <Col md={2}>
                       <Image src={item.image} alt={item.name} fluid rounded>
                         </Image>                    
                     </Col>
                     <Col md={3}>
-                      <Link to={`/product/${item._id}`}>{item.name}</Link>
+                      <Link to={`/product/${item.product}`}>{item.name}</Link>
                     </Col>
                     <Col md={2}>${item.price}</Col>
                     <Col md={2}>
-                    <Form.Control as='select' value={item.qty} onChange={(e)=> addToCartHandler(e, item._id)}>
+                    <Form.Control as='select' value={item.qty} onChange={(e)=> addToCartHandler(e, item.product)}>
                                             {
                                                 [...Array(item.countInStock).keys()].map(x => (
                                                     <option key={x+1} value={x+1}>{x+1}</option>
@@ -64,7 +64,7 @@ const CartScreen = () => {
                                         </Form.Control>
                     </Col>
                     <Col md={2}>
-                      <Button type='button' variant='light' onClick={()=> removeFromCartHandler(item._id)}>
+                      <Button type='button' variant='light' onClick={()=> removeFromCartHandler(item.product)}>
                                             <i className='fas fa-trash'> </i>
                       </Button>
                     </Col>

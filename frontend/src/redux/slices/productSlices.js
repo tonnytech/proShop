@@ -22,12 +22,32 @@ const getProductsSlice = createSlice({
         ...state,
         isLoading: true,
       }))
-      .addCase(fetchProducts.fulfilled, (state, action) => ({
-        ...state,
-        products: action.payload,
-        isLoading: false,
-        isSuccessfull: true
-      }))
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        const backedData = action.payload;
+        let newProducts = [];
+        backedData.map(element => (
+          newProducts.push({
+            product: element._id,
+            name: element.name,
+            image: element.image,
+            description: element.description,
+            brand: element.brand,
+            category: element.category,
+            price: element.price,
+            countInStock: element.countInStock,
+            rating: element.rating,
+            numReviews: element.numReviews,
+          })
+        ));
+        const returnPoducts = {
+          ...state,
+          products: newProducts,
+          isLoading: false,
+          isSuccessfull: true
+        }
+
+        return returnPoducts;
+  })
       .addCase(fetchProducts.rejected, (state, action) => ({
         ...state,
         error: action.payload,

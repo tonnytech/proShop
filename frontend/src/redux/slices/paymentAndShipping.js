@@ -15,13 +15,12 @@ const paymentInitionState = () => {
 };
 
 const initialState = {
-shippingAddress: addressInitialState(),
-paymentMethord: paymentInitionState(),
-order: [],
-isLoading: false,
-error: null,
-isSuccessfull: false,
-
+    shippingAddress: addressInitialState(),
+    paymentMethord: paymentInitionState(),
+    order: [],
+    isLoading: false,
+    error: null,
+    isSuccessfull: false,
 };
 
 const paymentAndShipping = createSlice({

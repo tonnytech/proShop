@@ -16,13 +16,13 @@ export const addOrderItems = asyncHandler(async(req, res) => {
             orderItems,
             user: req.User._id,
             shippingAddress,
-            paymentMethord,
+            paymentMethod: paymentMethord,
             itemsPrice,
             taxPrice,
             shippingPrice,
             totalPrice
         })
-
+        console.log(order)
         const createdOrder = await order.save()
         res.status(201).json(createdOrder)
     }

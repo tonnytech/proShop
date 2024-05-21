@@ -1,18 +1,24 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import paymentAndShipping from '../redux/slices/paymentAndShipping';
 import { Link } from 'react-router-dom'
+import { putOrder } from '../services/orderServices';
+import { useNavigate } from 'react-router-dom';
 
 const PlaceOrderScreen = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const cart = useSelector(state=> state.cartProductReducer)
     const AddressAndShipping = useSelector(state => state.paymentAndShipping)
-    const {shippingAddress} = AddressAndShipping;
-    console.log(AddressAndShipping)
-    console.log(cart)
+    const {shippingAddress, order, error, isLoading, isSuccessfull} = AddressAndShipping;
+
+    console.log(order);
+    console.log(isLoading)
+    console.log(error)
+    console.log(isSuccessfull)
 
     //calculate prices
     const addDecimals = (num) => {
@@ -24,9 +30,22 @@ const PlaceOrderScreen = () => {
     const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)))
     const totalPrice = addDecimals(Number(+itemsPrice + +shippingPrice + +taxPrice).toFixed(2))
 
-    console.log(itemsPrice)
+    useEffect(() => {
+        if(isSuccessfull){
+            navigate('/order')
+        }
+    }, [isSuccessfull,navigate])
+
     const placeOrderHandler = ()=> {
-        console.log('order')
+        dispatch(putOrder({
+            orderItems: cart.cartItems,
+            shippingAddress,
+            paymentMethord: AddressAndShipping.paymentMethord,
+            itemsPrice,
+            shippingPrice,
+            taxPrice,
+            totalPrice
+        }))
     }
 return (
     <>
@@ -102,6 +121,10 @@ return (
                                 <Col>$ {taxPrice}</Col>
                             </Row>
                         </ListGroup.Item>
+                        {error && 
+                        <ListGroup.Item>
+                            <Message variant='danger' childern={error.error} />
+                        </ListGroup.Item>}
                         <ListGroup.Item>
                             <Row>
                                 <Col>Total</Col>

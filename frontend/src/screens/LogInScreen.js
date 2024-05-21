@@ -39,7 +39,7 @@ const LogInScreen = () => {
 return (
     <FormContainer>
             <h1>Sign in</h1>
-            {error && <Message variant='danger' childern={error}>{error}</Message>}
+            {error && <Message variant='danger' childern={error.error} />}
             {isLoading && <Loader />}
         <Form onSubmit={submitHandler}>
             <Form.Group controlId='email'>
@@ -62,7 +62,7 @@ return (
             </Col>
         </Row>
     </FormContainer>
-  )
+    )
 }
 
 export default LogInScreen;

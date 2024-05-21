@@ -22,12 +22,21 @@ const getSingleProductSlice = createSlice({
         ...state,
         isLoading: true,
       }))
-      .addCase(fetchProduct.fulfilled, (state, action) => ({
+      .addCase(fetchProduct.fulfilled, (state, action) => {
+        const backedData = action.payload;
+        let oldKey = "_id"
+        let newKey = "product"
+        backedData[newKey] = backedData[oldKey]
+        delete backedData[oldKey]
+      const returnData =  {
         ...state,
-        product: action.payload,
+        product: backedData,
         isLoading: false,
         isSuccessfull: true
-      }))
+      }
+      console.log(returnData)
+      return returnData;
+      })
       .addCase(fetchProduct.rejected, (state, action) => ({
         ...state,
         error: action.payload,
