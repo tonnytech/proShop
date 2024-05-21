@@ -22,13 +22,13 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action) {
       // let cartItem;
-      if(action.payload._id){
+      if(action.payload.product){
       const cartItem = action.payload;
-      const existingItem = state.cartItems.find((item) => item._id === cartItem._id);
+      const existingItem = state.cartItems.find((item) => item.product === cartItem.product);
       if(existingItem){
           const currentItem = {
               ...state,
-              cartItems: state.cartItems.map(x => x._id === existingItem._id ? cartItem : x)
+              cartItems: state.cartItems.map(x => x.product === existingItem.product ? cartItem : x)
           }
           setLocalStorage('cartItems', [...currentItem.cartItems]);
           return currentItem;
@@ -49,7 +49,7 @@ const cartSlice = createSlice({
     removeFromCart(state, action) {
     const currentItems = {
       ...state,
-      cartItems: state.cartItems.filter((x)=>x._id !== action.payload)
+      cartItems: state.cartItems.filter((x)=>x.product !== action.payload)
     }
     console.log(currentItems)
     setLocalStorage('cartItems', [...currentItems.cartItems]);

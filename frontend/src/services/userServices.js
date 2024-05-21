@@ -57,7 +57,6 @@ export const updateUserOrGetUser = createAsyncThunk(
       } else {
         response = await axios.get('/api/users/profile', config);
       }
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
