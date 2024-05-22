@@ -43,8 +43,8 @@ const RegisterScreen = () => {
 return (
     <FormContainer>
             <h1>Sign Up</h1>
-            {error && <Message variant='danger' childern={error}>{error}</Message>}
-            {message && <Message variant='danger' childern={message}>{message}</Message>}
+            {error && <Message variant='danger' children={error}>{error}</Message>}
+            {message && <Message variant='danger' children={message}>{message}</Message>}
             {isLoading && <Loader />}
         <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>

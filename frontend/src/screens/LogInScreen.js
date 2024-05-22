@@ -39,7 +39,7 @@ const LogInScreen = () => {
 return (
     <FormContainer>
             <h1>Sign in</h1>
-            {error && <Message variant='danger' childern={error.error} />}
+            {error && <Message variant='danger' children={error.error} />}
             {isLoading && <Loader />}
         <Form onSubmit={submitHandler}>
             <Form.Group controlId='email'>

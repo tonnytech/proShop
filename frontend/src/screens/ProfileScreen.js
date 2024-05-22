@@ -54,8 +54,8 @@ const ProfileScreen = () => {
     return <Row>
     <Col md={3}>
     <h2>User Profile</h2>
-            {error && <Message variant='danger' childern={error}>{error}</Message>}
-            {message && <Message variant='danger' childern={message}>{message}</Message>}
+            {error && <Message variant='danger' children={error}>{error}</Message>}
+            {message && <Message variant='danger' children={message}>{message}</Message>}
             {isLoading && <Loader />}
         <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>

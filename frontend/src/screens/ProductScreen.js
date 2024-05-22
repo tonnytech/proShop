@@ -31,7 +31,7 @@ const ProductScreen = () => {
     return (
         <>
         <Link className='btn btn-dark my-3' to='/'>Go Back</Link>
-        {isLoading ? <Loader /> : error ? <Message variant='danger' childern={error} /> : <Row>
+        {isLoading ? <Loader /> : error ? <Message variant='danger' children={error} /> : <Row>
                 <Col md={6}>
                     <Image src={product.image} alt={product.name} fluid />
                 </Col>

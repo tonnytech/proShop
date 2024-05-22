@@ -14,8 +14,7 @@ const PlaceOrderScreen = () => {
   const AddressAndShipping = useSelector((state) => state.paymentAndShipping);
   const { shippingAddress, error } = AddressAndShipping;
   const { order, isSuccessfull } = useSelector((state) => state.orderSlice);
-  console.log(order);
-  console.log(isSuccessfull);
+
   //calculate prices
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
@@ -29,6 +28,7 @@ const PlaceOrderScreen = () => {
   const totalPrice = addDecimals(
     Number(+itemsPrice + +shippingPrice + +taxPrice).toFixed(2)
   );
+  console.log(order)
 
   useEffect(() => {
     if (isSuccessfull) {
@@ -41,7 +41,7 @@ const PlaceOrderScreen = () => {
       putOrder({
         orderItems: cart.cartItems,
         shippingAddress,
-        paymentMethord: AddressAndShipping.paymentMethord,
+        PaymentMethod: AddressAndShipping.paymentMethord,
         itemsPrice,
         shippingPrice,
         taxPrice,
@@ -127,7 +127,7 @@ const PlaceOrderScreen = () => {
               </ListGroup.Item>
               {error && (
                 <ListGroup.Item>
-                  <Message variant='danger' childern={error.error} />
+                  <Message variant='danger' children={error.error} />
                 </ListGroup.Item>
               )}
               <ListGroup.Item>

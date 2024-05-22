@@ -5,7 +5,6 @@ import { getLocalStorage } from "../constants/constants";
 export const putOrder = createAsyncThunk(
   "order/putOrder",
   async (order, thunkAPI) => {
-    console.log(order);
     const token = getLocalStorage("UserToken");
     const config = {
       headers: {
@@ -23,17 +22,17 @@ export const putOrder = createAsyncThunk(
 );
 
 export const getOrderDetails = createAsyncThunk(
-  "user/login",
+  "getOrderDetails",
   async (id, thunkAPI) => {
     const token = getLocalStorage("UserToken");
+        
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     };
     try {
-      const response = await axios.post("/api/users/login", id, config);
+      const response = await axios.get(`/api/orders/${id}`, config);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

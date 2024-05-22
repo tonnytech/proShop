@@ -16,7 +16,7 @@ const HomeScreen = () => {
     return (
       <>
       <h1>Latest products</h1>
-      {isLoading ? <Loader /> : error ? <Message variant='danger' childern={error} /> : <Row>
+      {isLoading ? <Loader /> : error ? <Message variant='danger' children={error} /> : <Row>
           {products.map(product =>(
               <Col key={product.product} sm={12} md={6} ld={4} xl={3}>
                   <Product product={product} />
